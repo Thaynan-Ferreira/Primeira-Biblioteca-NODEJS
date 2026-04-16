@@ -4,7 +4,24 @@ const caminhoArquivo = process.argv; //passo o caminho do arquivo como argumento
 const link = caminhoArquivo[2];
 
 fs.readFile(link, 'utf-8', (erro, texto) => {
-    console.log(texto);
+    verificaPalavrasDuplicadas(texto);
 })
 
-console.log(link);
+// criar um array com as palavras
+//contar as ocorrencias
+//montar um objeto com o resultado
+// {
+//     "web": 5,
+//     "dev": 3,
+//     "javascript": 2
+// }
+
+function verificaPalavrasDuplicadas(texto) {
+    const listaPalavras = texto.split(' '); //quebra o texto em palavras, usando o espaço como separador, e armazena em um array chamado listaPalavras
+    const resultado = {};
+    //objeto[propridade] = valor; 
+    listaPalavras.forEach(palavra => {
+        resultado[palavra] = (resultado[palavra] || 0) + 1; //se a palavra já existe no resultado, pega o valor atual e soma 1, se não existe, atribui o valor 0 e soma 1
+    });
+    console.log(resultado);
+}
