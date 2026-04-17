@@ -26,12 +26,20 @@ function quebraEmParagrafos(texto) {
 
 }
 
+function limpaPalavras(palavra) {
+    return palavra.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ''); //remove os caracteres especiais da palavra, usando uma expressão regular, e retorna a palavra limpa
+}
+
 function verificaPalavrasDuplicadas(texto) {
     const listaPalavras = texto.split(' '); //quebra o texto em palavras, usando o espaço como separador, e armazena em um array chamado listaPalavras
     const resultado = {};
     //objeto[propridade] = valor; 
     listaPalavras.forEach(palavra => {
-        resultado[palavra] = (resultado[palavra] || 0) + 1; //se a palavra já existe no resultado, pega o valor atual e soma 1, se não existe, atribui o valor 0 e soma 1
+        if (palavra.length >= 3) {
+            const palavraLimpa = limpaPalavras(palavra); //limpa a palavra usando a função limpaPalavras e armazena na variável palavraLimpa
+            resultado[palavraLimpa] = (resultado[palavraLimpa] || 0) + 1; //se a palavra já existe no resultado, pega o valor atual e soma 1, se não existe, atribui o valor 0 e soma 1
+        }
+        
     });
     return resultado;
 }
