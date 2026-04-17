@@ -19,9 +19,11 @@ fs.readFile(link, 'utf-8', (erro, texto) => {
 
 function quebraEmParagrafos(texto) {
     const paragrafos = texto.toLowerCase().split('\n'); //quebra o texto em parágrafos, usando a quebra de linha como separador, e armazena em um array chamado paragrafos
-    const contagem = paragrafos.map((paragrafo) => {
+    const contagem = paragrafos.flatMap((paragrafo) => {//para cada parágrafo, chama a função verificaPalavrasDuplicadas e retorna o resultado, que é um objeto com a contagem de palavras para aquele parágrafo, e depois junta todos os resultados em um único array usando flatMap
+        if (!paragrafo) return [];
         return verificaPalavrasDuplicadas(paragrafo); //para cada parágrafo, chama a função verificaPalavrasDuplicadas e retorna o resultado, que é um objeto com a contagem de palavras para aquele parágrafo
-    });
+    })
+
     console.log(contagem);
 
 }
