@@ -4,11 +4,20 @@ const caminhoArquivo = process.argv; //passo o caminho do arquivo como argumento
 const link = caminhoArquivo[2];
 
 fs.readFile(link, 'utf-8', (erro, texto) => {
-    if (erro) {
-        console.log('Qual é o erro? ', erro.code);
-        return;
-    }    
-    contaPalavras(texto);
+    
+    //lê o arquivo usando a função readFile do módulo fs, passando o caminho do arquivo, o encoding (utf-8) e uma função de callback que recebe dois parâmetros: erro e texto. Se ocorrer um erro na leitura do arquivo, o parâmetro erro vai conter o erro, caso contrário, o parâmetro texto vai conter o conteúdo do arquivo.
+    try {
+        if (erro) throw erro; //se ocorrer um erro na leitura do arquivo, lança o erro para ser tratado no bloco catch
+        contaPalavras(texto);
+    } catch (erro) {
+        if (erro.code === 'ENOENT') { //se o código do erro for ENOENT, significa que o arquivo não foi encontrado, então exibe uma mensagem de erro personalizada
+            console.error('Arquivo não encontrado. Verifique o caminho e tente novamente.');
+        } else {
+            console.error('Ocorreu um erro ao ler o arquivo:', erro); //se for outro tipo de erro, exibe a mensagem de erro genérica
+        }
+    }
+      
+    
     
 })
 
