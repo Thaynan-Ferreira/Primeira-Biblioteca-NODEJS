@@ -4,21 +4,12 @@ const caminhoArquivo = process.argv; //passo o caminho do arquivo como argumento
 const link = caminhoArquivo[2];
 
 fs.readFile(link, 'utf-8', (erro, texto) => {
-    quebraEmParagrafos(texto);
-    //verificaPalavrasDuplicadas(texto);
+    contaPalavras(texto);
+    
 })
 
-// criar um array com as palavras
-//contar as ocorrencias
-//montar um objeto com o resultado
-// {
-//     "web": 5,
-//     "dev": 3,
-//     "javascript": 2
-// }
-
-function quebraEmParagrafos(texto) {
-    const paragrafos = texto.toLowerCase().split('\n'); //quebra o texto em parágrafos, usando a quebra de linha como separador, e armazena em um array chamado paragrafos
+function contaPalavras(texto) {
+    const paragrafos = extraiParagrafos(texto); //chama a função extraiParagrafos, passando o texto lido do arquivo, e armazena o resultado em uma variável chamada paragrafos, que é um array de parágrafos
     const contagem = paragrafos.flatMap((paragrafo) => {//para cada parágrafo, chama a função verificaPalavrasDuplicadas e retorna o resultado, que é um objeto com a contagem de palavras para aquele parágrafo, e depois junta todos os resultados em um único array usando flatMap
         if (!paragrafo) return [];
         return verificaPalavrasDuplicadas(paragrafo); //para cada parágrafo, chama a função verificaPalavrasDuplicadas e retorna o resultado, que é um objeto com a contagem de palavras para aquele parágrafo
@@ -28,6 +19,11 @@ function quebraEmParagrafos(texto) {
 
 }
 
+function extraiParagrafos(texto) {
+    return texto.toLowerCase().split('\n'); //quebra o texto em parágrafos, usando a quebra de linha como separador, e armazena em um array chamado paragrafos
+    
+}
+
 function limpaPalavras(palavra) {
     return palavra.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ''); //remove os caracteres especiais da palavra, usando uma expressão regular, e retorna a palavra limpa
 }
@@ -35,7 +31,6 @@ function limpaPalavras(palavra) {
 function verificaPalavrasDuplicadas(texto) {
     const listaPalavras = texto.split(' '); //quebra o texto em palavras, usando o espaço como separador, e armazena em um array chamado listaPalavras
     const resultado = {};
-    //objeto[propridade] = valor; 
     listaPalavras.forEach(palavra => {
         if (palavra.length >= 3) {
             const palavraLimpa = limpaPalavras(palavra); //limpa a palavra usando a função limpaPalavras e armazena na variável palavraLimpa
