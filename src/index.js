@@ -1,4 +1,5 @@
 const fs = require('fs');//file system
+const trataErros = require('./erros/funcoesErro'); //importa a função trataErros do arquivo funcoesErro.js, que é responsável por tratar os erros que podem ocorrer na leitura do arquivo
 
 const caminhoArquivo = process.argv; //passo o caminho do arquivo como argumento no terminal, o node vai ler esse caminho e armazenar na variável caminhoArquivo, que é um array. O primeiro elemento é o caminho do node, o segundo elemento é o caminho do arquivo index.js, e o terceiro elemento é o caminho do arquivo que eu quero ler.
 const link = caminhoArquivo[2];
@@ -10,11 +11,7 @@ fs.readFile(link, 'utf-8', (erro, texto) => {
         if (erro) throw erro; //se ocorrer um erro na leitura do arquivo, lança o erro para ser tratado no bloco catch
         contaPalavras(texto);
     } catch (erro) {
-        if (erro.code === 'ENOENT') { //se o código do erro for ENOENT, significa que o arquivo não foi encontrado, então exibe uma mensagem de erro personalizada
-            console.error('Arquivo não encontrado. Verifique o caminho e tente novamente.');
-        } else {
-            console.error('Ocorreu um erro ao ler o arquivo:', erro); //se for outro tipo de erro, exibe a mensagem de erro genérica
-        }
+        trataErros(erro); //chama a função trataErros, passando o erro ocorrido na leitura do arquivo, para que ele seja tratado e uma mensagem de erro seja exibida para o usuário
     }
       
     
