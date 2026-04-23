@@ -1,24 +1,4 @@
-const fs = require('fs');//file system
-const trataErros = require('./erros/funcoesErro'); //importa a função trataErros do arquivo funcoesErro.js, que é responsável por tratar os erros que podem ocorrer na leitura do arquivo
-
-const caminhoArquivo = process.argv; //passo o caminho do arquivo como argumento no terminal, o node vai ler esse caminho e armazenar na variável caminhoArquivo, que é um array. O primeiro elemento é o caminho do node, o segundo elemento é o caminho do arquivo index.js, e o terceiro elemento é o caminho do arquivo que eu quero ler.
-const link = caminhoArquivo[2];
-
-fs.readFile(link, 'utf-8', (erro, texto) => {
-    
-    //lê o arquivo usando a função readFile do módulo fs, passando o caminho do arquivo, o encoding (utf-8) e uma função de callback que recebe dois parâmetros: erro e texto. Se ocorrer um erro na leitura do arquivo, o parâmetro erro vai conter o erro, caso contrário, o parâmetro texto vai conter o conteúdo do arquivo.
-    try {
-        if (erro) throw erro; //se ocorrer um erro na leitura do arquivo, lança o erro para ser tratado no bloco catch
-        contaPalavras(texto);
-    } catch (erro) {
-        trataErros(erro); //chama a função trataErros, passando o erro ocorrido na leitura do arquivo, para que ele seja tratado e uma mensagem de erro seja exibida para o usuário
-    }
-      
-    
-    
-})
-
-function contaPalavras(texto) {
+export function contaPalavras(texto) {
     const paragrafos = extraiParagrafos(texto); //chama a função extraiParagrafos, passando o texto lido do arquivo, e armazena o resultado em uma variável chamada paragrafos, que é um array de parágrafos
     const contagem = paragrafos.flatMap((paragrafo) => {//para cada parágrafo, chama a função verificaPalavrasDuplicadas e retorna o resultado, que é um objeto com a contagem de palavras para aquele parágrafo, e depois junta todos os resultados em um único array usando flatMap
         if (!paragrafo) return [];
