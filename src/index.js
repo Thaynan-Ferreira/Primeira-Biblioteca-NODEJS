@@ -5,7 +5,7 @@ export function contaPalavras(texto) {
         return verificaPalavrasDuplicadas(paragrafo); //para cada parágrafo, chama a função verificaPalavrasDuplicadas e retorna o resultado, que é um objeto com a contagem de palavras para aquele parágrafo
     })
 
-    console.log(contagem);
+    return contagem;
 
 }
 
