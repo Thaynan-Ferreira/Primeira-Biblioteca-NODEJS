@@ -7,7 +7,12 @@ function montaSaidaArquivo(listaPalavras) {
     let textoFinal = '';
     listaPalavras.forEach((paragrafo, indice) => {
         const duplicadas = filtraOcorrencias(paragrafo).join(', ');
-        textoFinal += `Palavras que ocorrem mais de uma vez no parágrafo ${indice + 1}: ${duplicadas}\n`;
+        if (duplicadas.length > 0) {
+            textoFinal += `Palavras que ocorrem mais de uma vez no parágrafo ${indice + 1}: ${duplicadas}\n`;
+        }
+        else {
+            textoFinal += `Nenhuma palavra ocorre mais de uma vez no parágrafo ${indice + 1}.\n`;
+        }        
     });
     return textoFinal;
 }

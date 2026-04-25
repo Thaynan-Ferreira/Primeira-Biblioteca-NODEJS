@@ -1,8 +1,8 @@
-Palavras que ocorrem mais de uma vez no parágrafo 1: 
-Palavras que ocorrem mais de uma vez no parágrafo 2: 
+Nenhuma palavra ocorre mais de uma vez no parágrafo 1.
+Nenhuma palavra ocorre mais de uma vez no parágrafo 2.
 Palavras que ocorrem mais de uma vez no parágrafo 3: uma
-Palavras que ocorrem mais de uma vez no parágrafo 4: 
-Palavras que ocorrem mais de uma vez no parágrafo 5: 
-Palavras que ocorrem mais de uma vez no parágrafo 6: 
+Nenhuma palavra ocorre mais de uma vez no parágrafo 4.
+Nenhuma palavra ocorre mais de uma vez no parágrafo 5.
+Nenhuma palavra ocorre mais de uma vez no parágrafo 6.
 Palavras que ocorrem mais de uma vez no parágrafo 7: dispositivos, web, seu, conectado
 Palavras que ocorrem mais de uma vez no parágrafo 8: cliente, uma, para
