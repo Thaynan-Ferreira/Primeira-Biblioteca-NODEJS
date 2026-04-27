@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Thaynan-Ferreira/Primeira-Biblioteca-NODEJS/issues"
   },
-  "homepage": "https://github.com/Thaynan-Ferreira/Primeira-Biblioteca-NODEJS#readme"
+  "homepage": "https://github.com/Thaynan-Ferreira/Primeira-Biblioteca-NODEJS#readme",
+  "dependencies": {
+    "commander": "^14.0.3"
+  }
 }
