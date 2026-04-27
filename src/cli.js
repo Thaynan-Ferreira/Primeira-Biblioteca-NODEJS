@@ -4,6 +4,7 @@ import trataErros from './erros/funcoesErro.js'; //importa a função trataErros
 import { contaPalavras } from './index.js'; //importa a função contaPalavras do arquivo index.js, que é responsável por contar as palavras do texto lido do arquivo
 import { montaSaidaArquivo } from './helpers.js'; //importa a função montaSaidaArquivo do arquivo helpers.js, que é responsável por montar a saída do arquivo com as palavras que ocorrem mais de uma vez em cada parágrafo
 import { Command } from 'commander'; //importa a classe Command do módulo commander, que é responsável por criar a interface de linha de comando para o programa
+import chalk from 'chalk';
 
 const program = new Command(); //cria uma nova instância da classe Command, que é responsável por criar a interface de linha de comando para o programa
 
@@ -15,7 +16,7 @@ program
         const { texto, destino } = options; //desestrutura o objeto options para obter os valores das opções texto e destino
         
         if (!texto || !destino) { //verifica se as opções texto e destino foram fornecidas, se não, exibe uma mensagem de erro e encerra o programa
-            console.error('Erro: Favor inserir caminho de origem e de destino.');
+            console.error(chalk.red('Erro: Favor inserir caminho de origem e de destino.'));
             program.help(); //exibe a ajuda do programa, que mostra as opções disponíveis e como usá-las
             return; //encerra o programa
         }
@@ -25,9 +26,9 @@ program
 
         try {
             processaArquivo(caminhoTexto, caminhoDestino); //chama a função processaArquivo, passando o caminho do texto e o caminho do destino como argumentos, para que ela leia o arquivo, conte as palavras e salve o resultado em um novo arquivo no destino especificado
-            console.log('Arquivo processado com sucesso!'); //se a execução do programa for bem-sucedida, exibe uma mensagem de sucesso
+            console.log(chalk.green('Arquivo processado com sucesso!')); //se a execução do programa for bem-sucedida, exibe uma mensagem de sucesso
         } catch (erro) {
-            console.log('Ocorreu um erro ao processar o arquivo:', erro); //se ocorrer um erro na execução da função processaArquivo, exibe uma mensagem de erro com o erro ocorrido
+            console.log(chalk.red('Ocorreu um erro ao processar o arquivo: ' + erro)); //se ocorrer um erro na execução da função processaArquivo, exibe uma mensagem de erro com o erro ocorrido
         }
     })
 
